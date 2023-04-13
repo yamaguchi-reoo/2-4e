@@ -5,15 +5,22 @@
 /*****************************************
 *列挙型の宣言
 ******************************************/
-enum GAME {
+
+typedef enum GAME {
 	GAME_TITLE,
 	GAME_MAIN,
+	GAME_INIT,
 	GAME_PAUSE,
 	GAME_HELP,
 	GAME_RESULT,
 	GAME_NAME,
 	GAME_RANKING
-};
+}GAME_MODE;
+
+/***********************************
+*　定数の宣言
+************************************/
+
 /*****************************************
 *  変数の宣言（グローバル変数）
 *****************************************/
@@ -24,11 +31,20 @@ int gKeyFlg;				//　入力キー情報
 
 int gGameState = 0;			//　ゲームモード
 
+GAME_MODE gGameMode = GAME_TITLE;	//ゲームモード
+
+int gPlayerX = 100;		//プレイヤーのX座標
+int gPlayerY = 100;		//プレイヤーのY座標
+
 /*****************************************
 *  関数のプロトタイプ宣言
 *****************************************/
 
-
+void GameInit(void);		//ゲーム初期化処理
+void GameMain(void);		//ゲームメイン処理
+void DrawTitle(void);		//ゲームタイトル処理
+void PlayerControl(void);	//プレイヤー移動処理
+void AppleControl(void);	//リンゴ移動処理
 
 /*****************************************
 * プログラム開始
@@ -65,8 +81,18 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		// 画面の初期化
 		ClearDrawScreen();
 
-		// テスト表示
-		DrawString(250, 200, "りんご", 0xffffff, 0x000000);
+		switch (gGameMode) {
+		case GAME_TITLE:
+			DrawTitle();
+			break;
+		case GAME_INIT:
+			GameInit();
+			break;
+		case GAME_MAIN:
+			GameMain();
+			break;
+
+		}
 
 		// 裏画面の内容を表画面に反映する
 		ScreenFlip();
@@ -77,4 +103,50 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	// プログラムの終了
 	return 0;
+}
+
+/***********************************
+*　タイトル画面
+************************************/
+void DrawTitle(void)
+{
+	// テスト表示
+	DrawString(250, 200, "タイトル Aボタンでゲームメイン", 0xffffff, 0x000000);
+	//ゲームモードを切り替える
+	if ((GetJoypadInputState(DX_INPUT_PAD1) & PAD_INPUT_A) == 0) {
+			
+	}else{
+		gGameMode = GAME_INIT;
+	}
+}
+
+/***********************************
+*　ゲーム初期化
+************************************/
+void GameInit(void)
+{
+	
+	gGameMode = GAME_MAIN;
+}
+
+/***********************************
+*　ゲームメイン化処理
+************************************/
+void GameMain(void)
+{
+	// テスト表示
+	DrawString(250, 200, "ゲーム画面", 0xffffff, 0x000000);
+
+	//プレイヤー移動
+	PlayerControl();
+
+}
+/***********************************
+*　ゲームメイン化処理
+************************************/
+void PlayerControl(void)
+{
+	if (gNowKey & PAD_INPUT_LEFT)	gPlayerX -= 1;
+	if (gNowKey & PAD_INPUT_RIGHT)	gPlayerX += 1;
+	DrawBox(gPlayerX, gPlayerY, gPlayerX + 100, gPlayerY + 100, 0x00ff00, true);
 }
