@@ -9,10 +9,6 @@
 Result::Result(int total_score, int* score)
 {
 	TotalScore = total_score;
-	for (int i = 0; i < MAX_LEVEL; i++)
-	{
-		Score[i] = score[i];
-	}
 	WaitTime = WAIT_TIME;
 	RANKING::Insert(TotalScore);
 
@@ -86,11 +82,7 @@ void Result::Draw() const
 	DrawStringToHandle(200, 250, "合計スコア", 0x000000,HeadLineFont);
 	DrawFormatStringToHandle(250, 350, 0x000000, HeadLineFont, "%4dpt",TotalScore);
 
-	//各ステージのスコアの描画
-	for (int i = 0; i < MAX_LEVEL; i++)
-	{
-		DrawFormatStringToHandle(650, 230 + (50 * i), 0x000000, NomalFont,"%dステージ：%3dpt",i + 1, Score[i]);
-	}
+
 
 	DrawFormatStringToHandle(400, 550, 0x00ff00,GuideFont, "%d秒後にランキング画面に移動", WaitTime / 60);
 	DrawStringToHandle(500, 600, "Aボタンでスキップ",0x00ff00,GuideFont);

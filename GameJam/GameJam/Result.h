@@ -9,7 +9,6 @@ class Result :
 private:
     int Image; //背景画像
     int TotalScore; //合計スコア
-    int Score[MAX_LEVEL]; //各ステージのスコア
     int WaitTime; //次のシーンに移るまでの時間
 
     int HeadLineFont; //見出し用のフォント
