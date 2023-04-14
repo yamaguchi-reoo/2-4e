@@ -74,7 +74,7 @@ AbstractScene* Title::Update()
 	
 
 	//è\éöÉLÅ[Å™ì¸óÕ
-	if(PAD_INPUT::OnButton(XINPUT_BUTTON_DPAD_UP))
+	if(PAD_INPUT::OnButton(XINPUT_BUTTON_DPAD_UP||PAD_INPUT_UP))
 	{
 		PlaySoundMem(MenuSE, DX_PLAYTYPE_BACK);
 		Select--;
