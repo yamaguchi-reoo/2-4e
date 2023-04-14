@@ -34,9 +34,7 @@ void GameMain::Draw()const
 	player->Draw();
 
 	//ÉXÉRÉAÇÃï`âÊ
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200);
 	DrawBox(1000, 0,1280, 720, 0xffffff, TRUE);
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	
+	DrawFormatString(SCREEN_WIDTH-SCORE_UI_SIZE, 100, 0x000000, "%d", TotalScore);
 }
 
