@@ -13,6 +13,8 @@ private:
     int TotalScore;
     Player* player; //プレイヤー
 
+    int mori_img;
+
 public:
     //コンストラクタ
     GameMain();

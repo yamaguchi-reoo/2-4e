@@ -10,6 +10,13 @@ GameMain::GameMain()
 	TotalScore = 0;
 	//オブジェクト化
 	player = new Player();
+
+	//画像の読み込み
+	if ((mori_img = LoadGraph("Resource/Images/mori.png")) == -1)
+	{
+		throw "Resource/Images/mori.png";
+	}
+	
 }
 
 GameMain::~GameMain()
@@ -29,13 +36,16 @@ AbstractScene* GameMain::Update()
 
 void GameMain::Draw()const
 {
+	// 背景の描画
+	DrawGraph(0, 0, mori_img, TRUE);
+
 
 	//プレイヤーの描画
 	player->Draw();
 
+	
 	//スコアの描画
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 200);
-	DrawBox(1000, 0,1280, 720, 0xffffff, TRUE);
+	DrawBox(1000, 0,1280, 720, 0xff00ff, TRUE);
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	
 }

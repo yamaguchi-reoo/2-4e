@@ -74,7 +74,7 @@ AbstractScene* Title::Update()
 	
 
 	//è\éöÉLÅ[Å™ì¸óÕ
-	if(PAD_INPUT::OnButton(XINPUT_BUTTON_DPAD_UP))
+	if(PAD_INPUT::OnButton(XINPUT_BUTTON_DPAD_UP||PAD_INPUT_UP))
 	{
 		PlaySoundMem(MenuSE, DX_PLAYTYPE_BACK);
 		Select--;
@@ -112,7 +112,7 @@ AbstractScene* Title::Update()
 		}
 
 	}
-	if (PAD_INPUT::OnButton(XINPUT_BUTTON_A))
+	if (PAD_INPUT_A)//(PAD_INPUT::OnButton(XINPUT_BUTTON_A))
 	{
 		PlaySoundMem(DecisionSE, DX_PLAYTYPE_BACK);
 		switch(static_cast<TITLE_MENU>(Select))
