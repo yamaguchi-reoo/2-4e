@@ -24,11 +24,17 @@ Title::Title()
 
 	MenuFont = CreateFontToHandle("HeadLine", 80, 8, DX_FONTTYPE_ANTIALIASING_EDGE_8X8);
 
-	//画像の読み込み
-	if ((TitleImage = LoadGraph("Resource/Images/Title.png")) == -1)
+	//タイトル画像の読み込み
+	if ((mori_img = LoadGraph("Resource/Images/mori.png")) == -1)
 	{
-		throw "Resource/Images/Title.png";
+		throw "Resource/Images/mori.png";
 	}
+	// カーソル画像の読み込み
+	if ((cursor_img = LoadGraph("Resource/Images/apple.png")) == -1)
+	{
+		throw "Resource/Images/apple.png";
+	}
+
 
 	//BGMの読み込み
 	if ((TitleBGM = LoadSoundMem("Resource/sounds/BGM/Sick_Red_Girl.wav")) == -1)
@@ -74,7 +80,7 @@ AbstractScene* Title::Update()
 	
 
 	//十字キー↑入力
-	if(PAD_INPUT::OnButton(XINPUT_BUTTON_DPAD_UP||PAD_INPUT_UP))
+	if(PAD_INPUT::OnButton(XINPUT_BUTTON_DPAD_UP))
 	{
 		PlaySoundMem(MenuSE, DX_PLAYTYPE_BACK);
 		Select--;
@@ -153,7 +159,7 @@ AbstractScene* Title::Update()
 //画像描画
 void Title::Draw()const
 {
-	DrawGraph(0, 0, TitleImage, TRUE);
+	DrawGraph(0, 0, mori_img, TRUE);
 
 	// ステージの描画
 	SetFontSize(64);                             //サイズを64に変更
@@ -168,6 +174,7 @@ void Title::Draw()const
 
 	//カーソルの描画
 	int select_y = 280 + Select * 80;
-	DrawTriangle(700, select_y, 670, select_y - 30, 670, select_y + 30, 0xffd700, TRUE);
-	DrawTriangle(700, select_y, 670, select_y - 30, 670, select_y + 30, 0x000000, FALSE);
+	DrawGraph(600, 400, cursor_img, TRUE);
+	//DrawTriangle(700, select_y, 670, select_y - 30, 670, select_y + 30, 0xffd700, TRUE);
+	//DrawTriangle(700, select_y, 670, select_y - 30, 670, select_y + 30, 0x000000, FALSE);
 }
