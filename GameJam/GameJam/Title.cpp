@@ -84,14 +84,14 @@ AbstractScene* Title::Update()
 	{
 		PlaySoundMem(MenuSE, DX_PLAYTYPE_BACK);
 		Select--;
-		if (Select < 0)Select = 4;
+		if (Select < 0)Select = 3;
 	}
 	//十字キー↓入力
 	if (PAD_INPUT::OnButton(XINPUT_BUTTON_DPAD_DOWN))
 	{
 		PlaySoundMem(MenuSE, DX_PLAYTYPE_BACK);
 		Select++;
-		if (Select > 4)Select = 0;
+		if (Select > 3)Select = 0;
 
 	}
 
@@ -106,7 +106,7 @@ AbstractScene* Title::Update()
 		{
 			PlaySoundMem(MenuSE, DX_PLAYTYPE_BACK);
 			Select--;
-			if (Select < 0)Select = 4;
+			if (Select < 0)Select = 3;
 		}
 
 		//Lスティック下入力
@@ -114,7 +114,7 @@ AbstractScene* Title::Update()
 		{
 			PlaySoundMem(MenuSE, DX_PLAYTYPE_BACK);
 			Select++;
-			if (Select > 4)Select = 0;
+			if (Select > 3)Select = 0;
 		}
 
 	}
@@ -138,11 +138,6 @@ AbstractScene* Title::Update()
 			StopSoundMem(TitleBGM);
 			return new Help();
 			break;
-			//クレジット画面へ
-		case TITLE_MENU::GAME_CREDIT:
-			StopSoundMem(TitleBGM);
-			return new Credit();
-			break;
 			//エンド画面へ
 		case TITLE_MENU::GAME_END:
 			StopSoundMem(TitleBGM);
@@ -159,22 +154,19 @@ AbstractScene* Title::Update()
 //画像描画
 void Title::Draw()const
 {
-	DrawGraph(0, 0, mori_img, TRUE);
+	DrawGraph(0, 0, mori_img, FALSE);
 
 	// ステージの描画
 	SetFontSize(64);                             //サイズを64に変更
 	SetFontThickness(8);                         //太さを8に変更
 
 	//メニューの描画
-	DrawStringToHandle(730, 240, "GameStart",0xff00ff,MenuFont);
-	DrawStringToHandle(730, 320, "GameRanking", 0xff00ff, MenuFont);
-	DrawStringToHandle(730, 400, "GameHelp", 0xff00ff, MenuFont);
-	DrawStringToHandle(730, 480, "GameCredit", 0xff00ff, MenuFont);
-	DrawStringToHandle(730, 560, "GameEnd", 0xff00ff, MenuFont);
+	DrawStringToHandle(730, 240, "すたーと", 0xffffff, MenuFont);
+	DrawStringToHandle(730, 320, "らんきんぐ", 0xffffff, MenuFont);
+	DrawStringToHandle(730, 400, "へるぷ", 0xffffff, MenuFont);
+	DrawStringToHandle(730, 480, "えんど", 0xffffff, MenuFont);
 
 	//カーソルの描画
 	int select_y = 280 + Select * 80;
-	DrawGraph(600, 400, cursor_img, TRUE);
-	//DrawTriangle(700, select_y, 670, select_y - 30, 670, select_y + 30, 0xffd700, TRUE);
-	//DrawTriangle(700, select_y, 670, select_y - 30, 670, select_y + 30, 0x000000, FALSE);
+	DrawGraph(700, select_y, cursor_img, TRUE);
 }
