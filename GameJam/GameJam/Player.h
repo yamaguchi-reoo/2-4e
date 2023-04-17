@@ -22,13 +22,7 @@ private:
 	int AccelerationLeft;	//加速度（左）
 
 private:
-	bool NotJump();
 
-	void DashAnimation();
-	void WalkAnimation();
-	bool JumpStartAnimation();
-	void JumpAnimaiton();
-	bool JumpEndAnimation();
 
 public:
 	//コンストラクタ

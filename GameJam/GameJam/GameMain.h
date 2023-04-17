@@ -3,6 +3,7 @@
 #include "AbstractScene.h"
 #include "Player.h"
 #include "Stage.h"
+#include "Apple.h"
 
 
 class GameMain :
@@ -12,6 +13,7 @@ private:
 
     int TotalScore;
     Player* player; //ƒvƒŒƒCƒ„[
+    Apple* apple;   //ƒŠƒ“ƒS 
 
     int mori_img;
 
