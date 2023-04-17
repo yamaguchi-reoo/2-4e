@@ -17,6 +17,8 @@ private:
     int TitleBGM;       //BGM
     int MenuSE;         //選択SE
     int DecisionSE;     //決定音SE
+    int mori_img;
+    int cursor_img;
 
 public:
     //コンストラクタ
