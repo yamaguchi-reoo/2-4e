@@ -31,6 +31,7 @@ public:
     void Disp() {
         SetFontSize(10);
         DrawFormatString(10, 10, 0xffffff, "fps:%0.1f", fps);
+        SetFontSize(24);
     }
     //ˆ—‚ğ‚Ü‚Æ‚ß‚½‚à‚Ì
     float All() {
