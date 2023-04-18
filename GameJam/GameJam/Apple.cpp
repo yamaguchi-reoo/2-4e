@@ -6,7 +6,7 @@
 
 Apple::Apple() 
 {
-	A_Count = 0;
+	a_Count = 0;
 	frame = 0;
 }
 Apple::~Apple()
@@ -21,11 +21,18 @@ void Apple::UpDate()
 		{
 			g_Apple[i].y += g_Apple[i].speed;
 		}
+		if (g_Apple[i].y >= 500)
+		{
+			g_Apple[i].flg = FALSE;
+			a_Count--;
+		}
 	}
-	if (++frame % 25 == 0)
+	if (++frame >= 25)
 	{
 		Spawn();
+		frame = 0;
 	}
+	
 }
 void Apple::Draw() const
 {
@@ -41,9 +48,11 @@ void Apple::Draw() const
 
 void Apple::Spawn()
 {
+	Count = 0;
+
 	for (int i = 0; i <= MAX_APPLE; i++)
 	{
-		if (g_Apple[i].flg == FALSE && Count <= ceil((MAX_APPLE - A_Count) / 2))
+		if (g_Apple[i].flg == FALSE && Count <= ceil((MAX_APPLE - a_Count) / 2))
 		{
 			int rand = GetRand(4);
 			Count++;
@@ -61,15 +70,13 @@ void Apple::Spawn()
 				g_Apple[i] = g_AppleGr;
 				g_Apple[i].x = GetRand(700);
 				break;
-			case 3:
+			default:
 				g_Apple[i] = g_AppleTx;
 				g_Apple[i].x = GetRand(700);
-				break;
-			default:
 				break;
 			}
 		}
 	}
-	A_Count += Count;
+	a_Count += Count;	//ˆê‰ñ‚Åo‚µ‚½ƒŠƒ“ƒS‚ÌŒÂ”‚ð‡Œv‚É‘«‚·
 }
 
