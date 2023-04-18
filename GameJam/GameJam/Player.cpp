@@ -1,33 +1,22 @@
-#include "Player.h"
+#include"Player.h"
 #include"PadInput.h"
 #include"math.h"
+#include"define.h"
 
 Player::Player()
 {
 
 	//ここでプレイヤー画像とSE読込
 
-	
-
 	//初期化
-	TrunFlag = false;
-	ChageFlag = false;
-	StickRollFlag = false;
 	location.x = 100;
-	location.y = 500;
-	erea.width = 50;
-	erea.height = 100;
-	erea.width_rate = 0.6;
-	erea.height_rate = 0.5;
+	location.y = 550;
+
+	AccelerationRight = 0;
+	AccelerationLeft = 0;
+
 	PlayerState = PLAYER_STATE::IDOL;
-	Speed = 0;
-	JumpPower = 0;
-	JumpChage = 0;
-	AnimTimer = 0;
-	AnimInterval = 0;
-	AnimType = 0;
-	ClimbingTimer = 0;
-	Image = ImageStand;
+
 }
 
 Player::~Player()
@@ -39,81 +28,75 @@ void Player::UpDate()
 {
 	//移動
 
-	if (PAD_INPUT::GetLStick().ThumbX < -10000 || PAD_INPUT::GetLStick().ThumbX > 10000)
+	if (PAD_INPUT::GetLStick().ThumbX < -10000)
 	{
-		PlayerState = PLAYER_STATE::WALK;
+		PlayerState = PLAYER_STATE::WALK_LEFT;
 		Speed = WALK_SPEED;
-		location.x += PAD_INPUT::GetLStick().ThumbX / 1000;
+		if (AccelerationLeft <= 30) //左移動時の勢い
+		{
+			AccelerationLeft++;
+		}
+		if (AccelerationRight > 0)  //右に動いていた時の勢いを殺す処理
+		{
+			location.x += (AccelerationRight / 5);
+			AccelerationRight--;			
+		}
+		location.x = location.x - Speed - (AccelerationLeft / 5);
 	}
-	else {}	
+	else if (PAD_INPUT::GetLStick().ThumbX > 10000)
+	{
+		PlayerState = PLAYER_STATE::WALK_RIGTH;
+		Speed = WALK_SPEED;
+		if (AccelerationRight <= 30)	//右移動時の勢い
+		{
+			AccelerationRight++;
+		}
+		if (AccelerationLeft > 0)		//左に動いていた時の勢いを殺す処理
+		{
+			location.x -= (AccelerationLeft / 5);
+			AccelerationLeft--;
+
+		}
+		location.x = location.x + Speed + (AccelerationRight / 5);
+	}
+	else 
+	{ 
+		if (AccelerationRight > 0)
+		{
+			location.x += (AccelerationRight / 5);
+			AccelerationRight -= 1;
+
+		}
+		if (AccelerationLeft > 0)
+		{
+			location.x -= (AccelerationLeft / 5);
+			AccelerationLeft -= 1;
+
+		}
+		else 
+		{
+			PlayerState = PLAYER_STATE::IDOL;
+		}
+	}
 	
-	if (location.x < erea.width * erea.width_rate)
+	if (location.x > 900)
 	{
-		location.x = erea.width * erea.width_rate;
+		location.x = 900;
+		PlayerState = PLAYER_STATE::IDOL;
+		AccelerationRight = 0;
+		AccelerationLeft = 0;
 	}
-	if (location.y < erea.height * erea.height_rate)
+
+	if (location.x < 0)
 	{
-		location.y = erea.height * erea.height_rate;
+		location.x = 0;
+		PlayerState = PLAYER_STATE::IDOL;
+		AccelerationRight = 0;
+		AccelerationLeft = 0;
 	}
 }
-
-
-
-bool Player::NotJump()
-{
-	bool ret = true;
-	if ((PlayerState == PLAYER_STATE::JUMP) || (PlayerState == PLAYER_STATE::JUMP_START) || (PlayerState == PLAYER_STATE::JUMP_END))
-	{
-		ret = false;
-	}
-	return ret;
-}
-
-
-void Player::WalkAnimation()
-{
-
-}
-
 
 void Player::Draw() const
 {	
-	DrawBox(location.x, location.y, location.x+100,location.y+100,0x00ff00,TRUE);
-}
-
-void Player::Reset()
-{
-
-}
-
-//トランポリンに触れたら実行される
-void Player::HitTrampoline()
-{
-	if (!ChageFlag)
-	{
-		PlayerState = PLAYER_STATE::JUMP_CHARGE;
-		Image = ImagesJump[0];
-		ChageFlag = true;
-	}
-	
-}
-
-void Player::LeaveTrampoline()
-{
-	if (ChageFlag)
-	{
-		ChageFlag = false;
-	}
-}
-
-void Player::HitWall()
-{
-	PlayerState = PLAYER_STATE::CLIMBING;
-	Image = ImagesJump[10];
-}
-
-void Player::MissJump()
-{
-	Image = ImageMiss;
-	PlayerState = PLAYER_STATE::JUMP_MISS;
+	DrawBox(location.x, location.y, location.x + PLAYER_SIZE, location.y + PLAYER_SIZE, 0x00ff00, TRUE);
 }
