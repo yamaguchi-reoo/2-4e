@@ -11,6 +11,7 @@ GameMain::GameMain()
 	//オブジェクト化
 	player = new Player();
 	apple = new Apple();
+	fps = new FpsController();
 
 	//画像の読み込み
 	if ((mori_img = LoadGraph("Resource/Images/mori.png")) == -1)
@@ -32,6 +33,7 @@ AbstractScene* GameMain::Update()
 	//処理の更新
 	player->UpDate();
 	apple->UpDate();
+	fps->All();
 
 	return this;
 }
@@ -46,6 +48,8 @@ void GameMain::Draw()const
 
 	//リンゴの描画
 	apple->Draw();
+
+	fps->Disp();
 
 	//スコアの描画
 	DrawBox(1000, 0,1280, 720, 0xffffff, TRUE);

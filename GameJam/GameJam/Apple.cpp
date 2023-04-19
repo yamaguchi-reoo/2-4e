@@ -7,6 +7,7 @@
 Apple::Apple() 
 {
 	A_Count = 0;
+	frame = 0;
 }
 Apple::~Apple()
 {
@@ -14,7 +15,6 @@ Apple::~Apple()
 }
 void Apple::UpDate()
 {
-	Spawn();
 	for (int i = 0; i <= MAX_APPLE; i++)
 	{
 		if (g_Apple[i].flg == TRUE)
@@ -22,7 +22,10 @@ void Apple::UpDate()
 			g_Apple[i].y += g_Apple[i].speed;
 		}
 	}
-
+	if (++frame % 25 == 0)
+	{
+		Spawn();
+	}
 }
 void Apple::Draw() const
 {
@@ -30,52 +33,43 @@ void Apple::Draw() const
 	{
 		if (g_Apple[i].flg == TRUE)
 		{
-			DrawBox(g_Apple[i].x, g_Apple[i].y, g_Apple[i].x+50,g_Apple[i].y+50, 0x0000ff, TRUE);
+			DrawBox(g_Apple[i].x, g_Apple[i].y, g_Apple[i].x + APPLE_SIZE, g_Apple[i].y + APPLE_SIZE, g_Apple[i].img, TRUE);
+			DrawBox(g_Apple[i].x, g_Apple[i].y, g_Apple[i].x + APPLE_SIZE, g_Apple[i].y + APPLE_SIZE, 0x000000, FALSE);
 		}
 	}
 }
 
-int Apple::Spawn()
+void Apple::Spawn()
 {
 	for (int i = 0; i <= MAX_APPLE; i++)
 	{
-		if (g_Apple[i].flg == FALSE) 
+		if (g_Apple[i].flg == FALSE && Count <= ceil((MAX_APPLE - A_Count) / 2))
 		{
-			A_Count++;
-			int rand = GetRand(3);
-
-		switch(rand){
+			int rand = GetRand(4);
+			Count++;
+			switch(rand)
+			{
 			case 0:
 				g_Apple[i] = g_AppleRd;
-				//g_Apple[i].img = 
-				g_Apple[i].x = GetRand(1000);
+				g_Apple[i].x = GetRand(700);
 				break;
 			case 1:
-					g_Apple[i] = g_AppleBr;
-				//g_Apple[i].img = 
-				g_Apple[i].x = 300;
+				g_Apple[i] = g_AppleBr;
+				g_Apple[i].x = GetRand(700);
 				break;
 			case 2:
 				g_Apple[i] = g_AppleGr;
-				//g_Apple[i].img = 
-				g_Apple[i].x = 300;
+				g_Apple[i].x = GetRand(700);
 				break;
 			case 3:
 				g_Apple[i] = g_AppleTx;
-				//g_Apple[i].img = 
-					g_Apple[i].x = 300;
+				g_Apple[i].x = GetRand(700);
 				break;
 			default:
 				break;
-				}
-		return TRUE;
+			}
 		}
 	}
-	return FALSE;
-}
-
-int Apple::Delete()
-{
-	return 0;
+	A_Count += Count;
 }
 

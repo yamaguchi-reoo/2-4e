@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Stage.h"
 #include "Apple.h"
+#include "FpsController.h"
 
 
 class GameMain :
@@ -12,8 +13,10 @@ class GameMain :
 private:
 
     int TotalScore;
-    Player* player; //プレイヤー
-    Apple* apple;   //リンゴ 
+
+    Player* player;     //プレイヤー
+    Apple* apple;    //リンゴ 
+    FpsController* fps;   //fps
 
     int mori_img;
 
