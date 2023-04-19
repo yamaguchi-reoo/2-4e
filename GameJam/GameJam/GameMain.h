@@ -15,6 +15,8 @@ private:
     int TotalScore;
     Player* player; //ƒvƒŒƒCƒ„[
     Apple* apple;   //ƒŠƒ“ƒS 
+    FpsController* fps;
+    Score* score;
 
     int mori_img;
     int gAppleImg[2];
