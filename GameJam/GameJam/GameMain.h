@@ -5,7 +5,7 @@
 #include "Stage.h"
 #include "Apple.h"
 #include "FpsController.h"
-
+#include"Score.h"
 
 class GameMain :
     public AbstractScene
@@ -13,12 +13,11 @@ class GameMain :
 private:
 
     int TotalScore;
-
-    Player* player;     //プレイヤー
-    Apple* apple;    //リンゴ 
-    FpsController* fps;   //fps
+    Player* player; //プレイヤー
+    Apple* apple;   //リンゴ 
 
     int mori_img;
+    int gAppleImg[2];
 
 public:
     //コンストラクタ

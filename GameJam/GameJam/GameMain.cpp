@@ -1,6 +1,7 @@
 #include "DxLib.h"
 #include "GameMain.h"
 #include "Result.h"
+#include "Score.h"
 
 #define TIMER 180
 
@@ -12,11 +13,15 @@ GameMain::GameMain()
 	player = new Player();
 	apple = new Apple();
 	fps = new FpsController();
-
+	score = new Score();
 	//‰æ‘œ‚Ì“Ç‚Ýž‚Ý
 	if ((mori_img = LoadGraph("Resource/Images/mori.png")) == -1)
 	{
 		throw "Resource/Images/mori.png";
+	}
+	if ((gAppleImg[0] = LoadGraph("Resource/Images/apple.png")) == -1)
+	{
+		throw "Resource/Images/apple.png";
 	}
 	
 }
@@ -52,7 +57,9 @@ void GameMain::Draw()const
 	fps->Disp();
 
 	//ƒXƒRƒA‚Ì•`‰æ
-	DrawBox(1000, 0,1280, 720, 0xffffff, TRUE);
+	score->Draw();
+
 	DrawFormatString(SCREEN_WIDTH-SCORE_UI_SIZE, 100, 0x000000, "%d", TotalScore);
+
 }
 
