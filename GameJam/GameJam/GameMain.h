@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Stage.h"
 #include "Apple.h"
+#include"Score.h"
 
 
 class GameMain :
@@ -14,8 +15,10 @@ private:
     int TotalScore;
     Player* player; //プレイヤー
     Apple* apple;   //リンゴ 
+    Score* score;
 
     int mori_img;
+    int gAppleImg[2];
 
 public:
     //コンストラクタ

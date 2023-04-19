@@ -2,7 +2,9 @@
 class Score
 {
 private:
-
+	int gScore;
+	int gAppleImg[2];
+	int gAppleCount;
 
 
 public:
@@ -12,5 +14,4 @@ public:
 	void UpDate();
 
 	void Draw() const;
-
 };
