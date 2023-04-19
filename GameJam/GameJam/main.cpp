@@ -14,7 +14,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	LPSTR lpCmdLine, int nCmdShow)
 {
-	SetMainWindowText("Stick To Wall");
+	SetMainWindowText("りんごおとし");
 
 	ChangeWindowMode(TRUE);		// ウィンドウモードで起動
 

@@ -29,8 +29,9 @@ private:
 	//imgに仮で色データをいれている
 	struct AppleData	g_AppleRd = { TRUE,0,0xff0000,0	 ,0, 1.0,  100,0 };
 	struct AppleData	g_AppleBr = { TRUE,0,0x0000ff,0	 ,0, 2.0,  200,0 };
-	struct AppleData	g_AppleGr = { TRUE,0,0x00ff00,0  ,0, 3.5,  500,0 };
+	struct AppleData	g_AppleGr = { TRUE,0,0xffff00,0  ,0, 3.5,  500,0 };
 	struct AppleData	g_AppleTx = { TRUE,1,0xff00ff,0  ,0, 0.5, -750,0 };
+	struct AppleData	g_AppleNl = { FALSE,0,0,0,0,0,0,0};
 
 public:
 	//コンストラクタ
@@ -45,7 +46,11 @@ public:
 	//描画
 	void Draw() const;
 
+	//りんごのスポーン
 	void Spawn();
+
+	//りんごのスポーン確率用
+	int Rand();
 
 };
 
