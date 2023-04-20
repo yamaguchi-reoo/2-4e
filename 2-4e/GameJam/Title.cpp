@@ -3,7 +3,6 @@
 #include "GameMain.h"
 #include "DrawRanking.h"
 #include"PadInput.h"
-#include"Help.h"
 #include"Credit.h"
 #include"End.h"
 
@@ -132,11 +131,6 @@ AbstractScene* Title::Update()
 		case TITLE_MENU::GAME_RANKING:
 			StopSoundMem(TitleBGM);
 			return new DrawRanking();
-			break;
-			//ƒwƒ‹ƒv‰æ–Ê‚Ö
-		case TITLE_MENU::GAME_HELP:
-			StopSoundMem(TitleBGM);
-			return new Help();
 			break;
 			//ƒGƒ“ƒh‰æ–Ê‚Ö
 		case TITLE_MENU::GAME_END:
