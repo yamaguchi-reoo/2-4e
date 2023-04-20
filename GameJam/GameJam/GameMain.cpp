@@ -9,6 +9,7 @@ GameMain::GameMain()
 {
 	//初期化
 	TotalScore = 0;
+
 	//オブジェクト化
 	player = new Player();
 	apple = new Apple();
