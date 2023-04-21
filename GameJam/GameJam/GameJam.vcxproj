@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{492dd660-3fbe-4eac-862d-9e3cdc9c9ad4}</ProjectGuid>
+    <ProjectGuid>{6BE2DDF3-D038-4698-8073-6E281F10804B}</ProjectGuid>
     <RootNamespace>GameJam</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
