@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{6BE2DDF3-D038-4698-8073-6E281F10804B}</ProjectGuid>
+    <ProjectGuid>{492dd660-3fbe-4eac-862d-9e3cdc9c9ad4}</ProjectGuid>
     <RootNamespace>GameJam</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -157,7 +157,6 @@
     <ClCompile Include="End.cpp" />
     <ClCompile Include="FpsController.cpp" />
     <ClCompile Include="GameMain.cpp" />
-    <ClCompile Include="Help.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PadInput.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -165,7 +164,6 @@
     <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Score.cpp" />
-    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="Apple.cpp" />
   </ItemGroup>
@@ -179,13 +177,11 @@
     <ClInclude Include="End.h" />
     <ClInclude Include="FpsController.h" />
     <ClInclude Include="GameMain.h" />
-    <ClInclude Include="Help.h" />
     <ClInclude Include="PadInput.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Ranking.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="Score.h" />
-    <ClInclude Include="Stage.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="Apple.h" />
   </ItemGroup>
