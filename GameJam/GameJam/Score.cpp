@@ -27,6 +27,11 @@ void Score::UpDate()
 }
 void Score::Draw() const
 {
+	DrawFormatString(1070, 390, 0xffffff, "%d", gAppleCount[0]);
+	DrawFormatString(1130, 390, 0xffffff, "%d", gAppleCount[1]);
+	DrawFormatString(1190, 390, 0xffffff, "%d", gAppleCount[2]);
+
+
 	DrawBox(1000, 0, 1280, 720, 0xffffff, TRUE);
 	DrawRotaGraph(1080, 370, 0.5f, 0, gAppleImg[0], TRUE, FALSE);
 	DrawRotaGraph(1140, 370, 0.5f, 0, gAppleImg[1], TRUE, FALSE);
