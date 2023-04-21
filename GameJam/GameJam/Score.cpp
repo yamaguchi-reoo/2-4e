@@ -1,9 +1,14 @@
 #include"DxLib.h"
 #include"Score.h"
+#include"Apple.h"
 
 Score::Score()
 {
-	gScore = 0;
+	gAppleCount[0] = 0;
+	gAppleCount[1] = 0;
+	gAppleCount[2] = 0;
+
+
 	if ((gAppleImg[0] = LoadGraph("Resource/Images/apple.png")) == -1)
 	{
 		throw "Resource/Images/apple.png";
@@ -23,6 +28,10 @@ Score::~Score()
 }
 void Score::UpDate()
 {
+	for (int i = 0; i < MAX_APPLE; i++)
+	{
+
+	}
 	return;
 }
 void Score::Draw() const
